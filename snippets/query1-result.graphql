@@ -1,0 +1,16 @@
+{
+  "data": {
+    "headers": [
+      {
+        "title": “test-title",
+        "items": [
+          {
+            "title": “test",
+            "type": "B",
+            "createdAt": “…”
+          }
+        ]
+      }
+    ]
+  }
+}
