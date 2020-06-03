@@ -9,8 +9,7 @@ Keynote und Infos zum WebWorker Meetup Saar Vortrag zu GraphQL und Prisma im Jun
     - [2 React Client starten](#2-react-client-starten)
     - [3 GraphQL Playground](#3-graphql-playground)
     - [4 Feld zu `Item` hinzufügen](#4-feld-zu-item-hinzufügen)
-    - [5 Feld umbenennen](#5-feld-umbenennen)
-    - [6 Header und Items via Mutation anlegen](#6-header-und-items-via-mutation-anlegen)
+    - [5 Header und Items via Mutation anlegen](#5-header-und-items-via-mutation-anlegen)
   - [Feedback](#feedback)
 
 
@@ -64,7 +63,7 @@ Läuft unter <http://localhost:9222>
 
 ### 4 Feld zu `Item` hinzufügen
 
-Feld in `schema.prisma` hinzufuegen
+1. Feld in `schema.prisma` hinzufuegen
 
 ```graphql
 model Item {
@@ -74,16 +73,16 @@ model Item {
 }
 ```
 
-Deployment
+2. Deployment
 
 ```sh
 npm run migrate
 npm start
 ```
 
-Playground prüfen <http://localhost:9222>. Feld noch nicht exponiert.
+3. Playground prüfen <http://localhost:9222>. Feld noch nicht exponiert.
 
-Add field to `src/types/Item.ts`
+4. Add field to `src/types/Item.ts`
 
 ```graphql
 ...
@@ -91,11 +90,62 @@ t.model.description();
 ...
 ```
 
-Nochmal playground prüfen <http://localhost:9222>. Feld ist da.
+5. Nochmal playground prüfen <http://localhost:9222>. Feld ist da aber leer.
 
-### 5 Feld umbenennen
+6. Seed script anpassen um Feld zu befüllen...
 
-### 6 Header und Items via Mutation anlegen
+```ts
+description: lorem.sentence(),
+```
+
+... und Testdaten neu generieren
+
+```sh
+npm run reset
+npm run seed
+```
+
+6. Client query ändern
+
+```graphql
+  query HeaderItemQuery {
+    headers {
+      title
+      items {
+        title
+        type
+        createdAt
+        description
+      }
+    }
+  }
+```
+
+7. Client API neu generieren
+
+```sh
+npm run codegen
+```
+
+8. `App.tsx` anpassen um Feld anzuzeigen
+
+```html
+...
+<td>Description</td>
+...
+<td>{i.description}</td>
+...
+```
+
+### 5 Header und Items via Mutation anlegen
+
+Auf branch `wwsaar-final` wechseln.
+
+```sh
+git checkout wwsaar-final
+```
+
+*Wird nach dem Talk in `master` gemerged.*
 
 ## Feedback
 
