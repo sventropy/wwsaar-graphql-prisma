@@ -19,7 +19,7 @@ Alle Links und Hintergrund- Infos finden sich in den [Slides](wwsaar-graphql-pri
 
 ## Demo
 
-Verwendet [sventropy/prisam2-boilerplate](https://github.com/sventropy/prisma2-boilerplate).
+Verwendet [sventropy/prisma2-boilerplate](https://github.com/sventropy/prisma2-boilerplate).
 
 ### 1 Service starten
 
